@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:vm="http://www.mulesoft.org/schema/mule/vm" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/vm http://www.mulesoft.org/schema/mule/vm/current/mule-vm.xsd">
+	<vm:config name="VM_Config" doc:name="VM Config" doc:id="7bbc235c-86de-4525-9864-9d98fe9df458" >
+		<vm:queues >
+			<vm:queue queueName="queue" />
+		</vm:queues>
+	</vm:config>
+	<flow name="queue2Flow" doc:id="a30f1ac2-bf2e-4e13-a416-7b29277a9ccd" >
+		<vm:listener queueName="queue" doc:name="Listener" doc:id="3e8c1083-affc-48cc-af2b-ba89f3a0dad7" config-ref="VM_Config"/>
+		<logger level="INFO" doc:name="Logger" doc:id="1eeb599d-f663-4109-a911-02542fb9bb73" message="#[payload]"/>
+		<logger level="INFO" doc:name="Logger" doc:id="6a4f7390-ccdf-4e52-be21-751227fc8c2e" message='#["End Of The Flow"]'/>
+	</flow>
+</mule>
